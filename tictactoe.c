@@ -102,7 +102,10 @@ void startgame()
         findemptyposition();
         if(isempty==0)
         {
-            return;
+           if (checkwinlosedrawCondition())
+            {
+                break;
+            }
         }
         printf("\nEnter a Position To Enter %c : ", choiceofUser);
         scanf("%d", &position);
@@ -510,12 +513,12 @@ int checkwinlosedrawCondition()
         printf("\nUSER WINS \n");
         return 1;
     }
-    else if (winlosedraw == 1 && countComputerWin == 1)
+    if (winlosedraw == 1 && countComputerWin == 1)
     {
         printf("\nCOMUTER WINS\n");
         return 1;
     }
-    else if (winlosedraw == 1 && countComputerWin == 0 && countUserWin == 0)
+    if (winlosedraw == 1 && countComputerWin == 0 && countUserWin == 0)
     {
         printf("\nDRAW\n");
         return 1;
@@ -530,7 +533,7 @@ void checkwinlosedraw()
     {
         checkforComputerWin();
     }
-    else if (winlosedraw == 0)
+    if (winlosedraw == 0)
     {
         checkforDraw();
     }
@@ -636,11 +639,3 @@ void main()
 {
     tictactoe();
 }
-
-// for(int i=0;i<3;i++)
-// {
-//     for(int j=0;j<3;j++)
-//     {
-
-//     }
-// }
