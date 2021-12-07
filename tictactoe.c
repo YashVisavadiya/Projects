@@ -3,9 +3,9 @@
 int board[3][3], computercount = 0, winlosedraw = 0, countComputerWin = 0, countUserWin = 0, isempty;
 char choiceofUser, choiceofComputer;
 
-//on Board 0 for Empty
-//         1 for User
-//         2 for Computer
+// on Board 0 for Empty
+//          1 for User
+//          2 for Computer
 
 void tictactoe()
 {
@@ -13,7 +13,6 @@ void tictactoe()
     initialize();
     choiceOX();
     display();
-    // printf("Enter The Position Where Would You Like To Enter %c : \n",choiceofUser);
     startgame();
 }
 
@@ -100,9 +99,9 @@ void startgame()
         int position;
         computercount = 0;
         findemptyposition();
-        if(isempty==0)
+        if (isempty == 0)
         {
-           if (checkwinlosedrawCondition())
+            if (checkwinlosedrawCondition())
             {
                 break;
             }
@@ -128,24 +127,19 @@ void findemptyposition()
     int k = 1;
 
     isempty = 0;
-    // printf("Available Positions :  ");
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
         {
             if (board[i][j] == 0)
             {
-                if(isempty == 0)
+                if (isempty == 0)
                 {
                     printf("Available Positions :  ");
                 }
                 printf("%d ", k);
                 isempty = 1;
             }
-            // else if(board[i][j] != 0 )
-            // {
-
-            // }
             k++;
         }
     }
@@ -293,15 +287,11 @@ void computerturn()
         return;
     }
     enterinCenterorCorner();
-
-    // if (computercount == 0)
-    // {
-    //     checkpairofComputer();
-    // }
-    // else if (computercount == 0)
-    // {
-    //     checkpairofUser();
-    // }
+    if (computercount == 1)
+    {
+        return;
+    }
+    enterinCenterofEdge();
 }
 
 void enterinCenterorCorner()
@@ -333,6 +323,34 @@ void enterinCenterorCorner()
     if (board[2][2] == 0)
     {
         board[2][2] = 2;
+        computercount = 1;
+        return;
+    }
+}
+
+void enterinCenterofEdge()
+{
+    if (board[0][1] == 0)
+    {
+        board[0][1] = 2;
+        computercount = 1;
+        return;
+    }
+    if (board[1][0] == 0)
+    {
+        board[1][0] = 2;
+        computercount = 1;
+        return;
+    }
+    if (board[1][2] == 0)
+    {
+        board[1][2] = 2;
+        computercount = 1;
+        return;
+    }
+    if (board[2][1] == 0)
+    {
+        board[2][1] = 2;
         computercount = 1;
         return;
     }
