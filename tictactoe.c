@@ -29,9 +29,8 @@ void initialize()
 
 void choiceOX()
 {
-
     printf("Enter Your Choice ' O '  /  ' X ' : ");
-    scanf("%c", &choiceofUser);
+    scanf("\t%c", &choiceofUser);
 
     if (choiceofUser == 'O' || choiceofUser == 'o')
     {
@@ -43,6 +42,7 @@ void choiceOX()
     }
     else
     {
+        printf("\n%d\n",choiceofUser);
         printf("INVALID CHOICE TRY AGAIN ...\n");
         choiceOX();
     }
@@ -91,7 +91,7 @@ void display()
             }
             k++;
         }
-        printf("\n\n");
+        printf("\n");
     }
 }
 
@@ -101,8 +101,8 @@ void startgame()
     {
         int position;
         computercount = 0;
-        findemptyposition();
-        if (isempty == 0)
+        // findemptyposition();
+        if (!isemptyposition())
         {
             if (checkwinlosedrawCondition())
             {
@@ -126,10 +126,31 @@ void startgame()
     }
 }
 
-void findemptyposition()
-{
-    int k = 1;
+// void findemptyposition()
+// {
+//     int k = 1;
 
+//     isempty = 0;
+//     for (int i = 0; i < 3; i++)
+//     {
+//         for (int j = 0; j < 3; j++)
+//         {
+//             if (board[i][j] == 0)
+//             {
+//                 // if (isempty == 0)
+//                 // {
+//                 //     printf("Available Positions :  ");
+//                 // }
+//                 // printf("%d ", k);
+//                 isempty = 1;
+//             }
+//             k++;
+//         }
+//     }
+// }
+
+int isemptyposition()
+{
     isempty = 0;
     for (int i = 0; i < 3; i++)
     {
@@ -137,16 +158,11 @@ void findemptyposition()
         {
             if (board[i][j] == 0)
             {
-                // if (isempty == 0)
-                // {
-                //     printf("Available Positions :  ");
-                // }
-                // printf("%d ", k);
                 isempty = 1;
             }
-            k++;
         }
     }
+    return isempty;
 }
 
 void entervalueinBoard(int position)
@@ -663,5 +679,12 @@ void checkforDraw()
 
 void main()
 {
-    tictactoe();
+    int choice=1;
+    do {
+        tictactoe();
+        printf("\nIf You Want To Play Again Press 1 \nFor Exit Press 0 :");
+        scanf("%d",&choice);
+        system("cls");
+    }while(choice!=0);
+
 }
