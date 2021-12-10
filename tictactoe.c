@@ -50,6 +50,8 @@ void choiceOX()
 
 void display()
 {
+    int k=1;
+    printf("\n");
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
@@ -58,37 +60,38 @@ void display()
             {
                 if (j == 2)
                 {
-                    printf(" \t ");
+                    printf("\t'%d'\t ",k);
                 }
                 else
                 {
-                    printf(" \t| ");
+                    printf("\t'%d'\t| ",k);
                 }
             }
             else if (board[i][j] == 1)
             {
                 if (j == 2)
                 {
-                    printf("%c \t ", choiceofUser);
+                    printf("\t %c \t ", choiceofUser);
                 }
                 else
                 {
-                    printf("%c \t| ", choiceofUser);
+                    printf("\t %c \t| ", choiceofUser);
                 }
             }
             else if (board[i][j] == 2)
             {
                 if (j == 2)
                 {
-                    printf("%c \t ", choiceofComputer);
+                    printf("\t %c \t ", choiceofComputer);
                 }
                 else
                 {
-                    printf("%c \t| ", choiceofComputer);
+                    printf("\t %c \t| ", choiceofComputer);
                 }
             }
+            k++;
         }
-        printf("\n");
+        printf("\n\n");
     }
 }
 
@@ -114,6 +117,7 @@ void startgame()
             break;
         }
         computerturn();
+        system("cls");
         display();
         if (checkwinlosedrawCondition())
         {
@@ -133,11 +137,11 @@ void findemptyposition()
         {
             if (board[i][j] == 0)
             {
-                if (isempty == 0)
-                {
-                    printf("Available Positions :  ");
-                }
-                printf("%d ", k);
+                // if (isempty == 0)
+                // {
+                //     printf("Available Positions :  ");
+                // }
+                // printf("%d ", k);
                 isempty = 1;
             }
             k++;
@@ -532,17 +536,17 @@ int checkwinlosedrawCondition()
 
     if (winlosedraw == 1 && countUserWin == 1)
     {
-        printf("\nUSER WINS \n");
+        printf("\nUSER WINS \nCOMPUTER LOSES");
         return 1;
     }
     if (winlosedraw == 1 && countComputerWin == 1)
     {
-        printf("\nCOMUTER WINS\n");
+        printf("\nCOMUTER WINS \nUSER LOSES\n");
         return 1;
     }
     if (winlosedraw == 1 && countComputerWin == 0 && countUserWin == 0)
     {
-        printf("\nDRAW\n");
+        printf("\nGAME DRAW\n");
         return 1;
     }
 }
